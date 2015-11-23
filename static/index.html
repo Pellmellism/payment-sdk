@@ -4,7 +4,48 @@
 	<meta charset="utf-8">
 </head>
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/app.js"></script>
+	<button id="button-pay">pay</button>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="/js/lib.js"></script>
+	<script>
+		$(function() {
+			$('#button-pay').on('click', pay);
+		});
+
+		function pay(e) {
+			e.preventDefault();
+
+			var data = {
+				amount: 123.45,
+				bill_to_address_city: "Singapore",
+				bill_to_address_country: "SG",
+				bill_to_address_line1: "1 lane card",
+				bill_to_email: "john@cybersource.com",
+				bill_to_forename: "John",
+				bill_to_surname: "Doe",
+				card_cvn: "123",
+				card_expiry_date: "11-2020",
+				card_type: "001",
+				currency: "SGD",
+				card_number: '4111111111111111',
+			};
+
+			var lib = new Zumata({
+				key: 'S2Ew1Dr0ZlqGB9MTOHfygRplCtAPWIRHW2qXHnlgA2o=',
+				callback: 'http://localhost:3000/callback?js=parent.callback',
+				data: data,
+				// host: '',
+				// provider: '',
+				debug: true,
+			});
+
+			lib.submit();
+		}
+
+		function callback(params) {
+			console.log('HELLO WORLD', params);
+		}
+	</script>
 </body>
 </html>
