@@ -83,7 +83,10 @@ function Zumata(params) {
     var $form = $('<form>')
       .attr('action', data.url)
       .attr('method', 'POST')
-      .attr('target', name);
+      .attr('target', name)
+      .css({
+        display: 'none',
+      });
 
   	for (var key in data.fields) {
   		if (data.fields.hasOwnProperty(key)) {
