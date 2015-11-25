@@ -6,8 +6,8 @@
 <body>
 	<button id="button-pay">pay</button>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="/js/lib.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="/js/lib.js"></script>
 	<script>
 		$(function() {
 			$('#button-pay').on('click', pay);
@@ -35,9 +35,7 @@
 				key: 'S2Ew1Dr0ZlqGB9MTOHfygRplCtAPWIRHW2qXHnlgA2o=',
 				callback: 'http://localhost:3000/callback?js=parent.callback',
 				data: data,
-				// host: '',
-				// provider: '',
-				debug: true,
+				debug: true
 			});
 
 			lib.submit();

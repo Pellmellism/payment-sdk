@@ -15,18 +15,11 @@ func main() {
 	http.HandleFunc("/callback", callbackHandler)
 
 	log.Println("Listening...")
-	http.ListenAndServe(":3000", nil)
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
-	// b, _ := ioutil.ReadAll(r.Body)
-	// fmt.Fprintf(w, string(b))
-
 	r.ParseForm()
-
-	// // DEBUG:
-	// debugB, _ := json.MarshalIndent(r.PostForm, "", "\t")
-	// fmt.Println("\x1b[32;1mCALLBACK POSTFORM DATA:\x1b[0m", string(debugB))
 
 	var params []string
 	for k, v := range r.PostForm {

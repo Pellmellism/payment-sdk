@@ -13,6 +13,8 @@ function Zumata(params) {
     debug: false,
   };
 
+  // params can overwrite defaultSettings
+  // 7 properties: key, callback, data, debug, host, provider, frameName
   self.settings = merge(defaultSettings, params);
 
   // state
@@ -36,7 +38,6 @@ function Zumata(params) {
   //////////////////////////////////////////////////////////////////////////
 
   function submit() {
-
     getPaymentID(self.settings.callback, paymentIDSuccess);
 
     function paymentIDSuccess() {
@@ -45,8 +46,8 @@ function Zumata(params) {
 
     function signatureSuccess() {
       var $form = self.injectFormHTML(self.settings.frameName, self.paymentSignatureRes);
-      self.submitForm($form, params.card_number);
-    };
+      self.submitForm($form, self.settings.data.card_number);
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -96,7 +97,7 @@ function Zumata(params) {
 
   	$form.appendTo('body');
 		return $form;
-  };
+  }
 
   function submitForm($form, cc) {
     return $form
@@ -187,7 +188,7 @@ function Zumata(params) {
         cb();
       }
   	});
-  };
+  }
 
   function log() {
     if (!self.settings.debug) {
